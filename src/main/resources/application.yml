@@ -20,8 +20,8 @@ spring:
         name: pokeGuide
     datasource:
         driver-class-name: com.mysql.cj.jdbc.Driver
-        password: Abcd1234!
-        url: jdbc:mysql://3.36.119.194/pokeguide
+        password: Qwpoer1!
+        url: jdbc:mysql://43.200.123.81/pokeguide
         username: poke
 
     data:
