@@ -35,6 +35,7 @@ public class UserService {
     private final UserMapper userMapper;
     private final JWTProvider jwtProvider;
 
+<<<<<<< HEAD
 
     // 이메일 중복 체크
     public boolean isEmailDuplicated(String email) {
@@ -42,6 +43,8 @@ public class UserService {
         return user.isPresent();
     }
 
+=======
+>>>>>>> origin/main
     // 회원가입 //
     public User register(UserDTO userDTO) {
         log.info("Registering user: {}", userDTO);
@@ -59,7 +62,10 @@ public class UserService {
         return savedUser;
     }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/main
     /* 내 설정 수정 */
     public ResponseEntity<?> updateUserInfo(UserDTO userDTO) {
 
@@ -159,5 +165,8 @@ public class UserService {
         return "myImg" + sName;
     }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/main
 }
