@@ -1,21 +1,17 @@
-package com.pokeguide.entity;
+package com.pokeguide.dto;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+
 import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @Getter
 @Setter
-@ToString
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 @Builder
-@Entity
-@Table(name = "user")
-public class User {
+public class UserDTO {
 
-    @Id
     private String uid;
     private String name;
     private String pass;
@@ -26,5 +22,10 @@ public class User {
     private String email;
     private String address;
     private String profile;
+    private String refreshToken;
+
+
+    // 파일 업로드 추가 //
+    private MultipartFile file;
 
 }
