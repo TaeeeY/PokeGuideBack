@@ -12,19 +12,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
 
-<<<<<<< HEAD
-=======
-    @Autowired
-    private AppInfo appInfo;
-
-    //@Value("${myServerProd.static-resources-path}")
-    //private String staticServerPathProd;
-
-    // ====== 배포시엔 해당 어노테이션 사용 ======
-    //@Value("${MyServerImg.static-resources-pathImg}")
-    //private String staticServerPathImg;
-
->>>>>>> origin/main
     @Value("${front.url}")
     private String frontUrl;
 
@@ -47,16 +34,9 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-<<<<<<< HEAD
                 .allowedOrigins(frontUrl)
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH")
                 .allowedHeaders("Authorization", "Cache-Control", "Content-Type", "X-Requested-With", "Origin", "Accept")
-=======
-                // .allowedOriginPatterns(frontUrl, "http://3.34.158.6","http://ec2-3-34-158-6.ap-northeast-2.compute.amazonaws.com")
-                .allowedOrigins("http://localhost:3000")
-                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH")
-                .allowedHeaders("Authorization", "Cache-Control", "Content-Type", "X-Requested-With", "Origin", "Accept","Access-Control-Allow-Origin")
->>>>>>> origin/main
                 .allowCredentials(true);
     }
 

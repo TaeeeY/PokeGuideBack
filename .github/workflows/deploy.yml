@@ -7,7 +7,6 @@ on:
     branches: [ main ] # main branch로 push 될 때 실행
 
 # 해당 yml 내에서 사용할 key-value 속성
-<<<<<<< HEAD
 env:  
   PROJECT_NAME: pokeGuide/pokeguide
   AWS_REGION: ap-northeast-2
@@ -15,15 +14,6 @@ env:
   CODE_DEPLOY_APPLICATION_NAME: oharam2024-codedeploy-app
   CODE_DEPLOY_DEPLOYMENT_GROUP_NAME: oharam2024-codedeploy-deploy-group
   
-=======
-env:
-  PROJECT_NAME: pokeguide
-  AWS_REGION: ap-northeast-2
-  S3_BUCKET_NAME: ty2024-s3-bucket-github-actions
-  CODE_DEPLOY_APPLICATION_NAME: ty2024codedeploy-app
-  CODE_DEPLOY_DEPLOYMENT_GROUP_NAME: ty2024-codedeploy-deploy-group
-
->>>>>>> origin/main
 # workflow는 한개 이상의 job을 가지며, 각 job은 여러 step에 따라 단계를 나눔
 jobs:
   build:
@@ -32,11 +22,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-<<<<<<< HEAD
      # 작업에서 액세스할 수 있도록 $GITHUB_WORKSPACE에서 저장소를 체크아웃
-=======
-      # 작업에서 액세스할 수 있도록 $GITHUB_WORKSPACE에서 저장소를 체크아웃
->>>>>>> origin/main
       - uses: actions/checkout@v3
       - name: Set up JDK 17
         uses: actions/setup-java@v3
@@ -45,7 +31,6 @@ jobs:
           java-version: '17'
 
       # application.properties를 프로젝트에 포함
-<<<<<<< HEAD
       - name: add Application.properties
         run: touch ./src/main/resources/application.properties
         shell: bash
@@ -55,35 +40,16 @@ jobs:
         run: echo "${{ secrets.APP_PROPERTIES }}" > ./src/main/resources/application.properties
         shell: bash
         
-=======
-      - name: add Application.yml
-        run: touch ./src/main/resources/application.yml
-        shell: bash
-
-      # github secret으로 등록한 properties 내용 덮어쓰기
-      - name: copy Application.properties
-        run: echo "${{ secrets.APP_PROPERTIES }}" > ./src/main/resources/application.yml
-        shell: bash
-
->>>>>>> origin/main
       # gradle 권한 설정
       - name: Grant execute permission for gradlew
         run: chmod +x ./gradlew
         shell: bash
-<<<<<<< HEAD
         
-=======
-
->>>>>>> origin/main
       # 빌드
       - name: Build with Gradle
         run: ./gradlew build
         shell: bash
-<<<<<<< HEAD
         
-=======
-
->>>>>>> origin/main
       - name: Make zip file
         run: zip -r ./$GITHUB_SHA.zip .
         shell: bash
@@ -94,11 +60,7 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
           aws-region: ${{ env.AWS_REGION }}
-<<<<<<< HEAD
           
-=======
-
->>>>>>> origin/main
       # script files 복사
       - name: Copy script
         run: cp ./scripts/*.sh ./deploy
@@ -106,11 +68,7 @@ jobs:
       # S3에 빌드 결과 업로드
       - name: Upload to S3
         run: aws s3 cp --region $AWS_REGION ./$GITHUB_SHA.zip s3://$S3_BUCKET_NAME/$PROJECT_NAME/$GITHUB_SHA.zip
-<<<<<<< HEAD
         
-=======
-
->>>>>>> origin/main
       # Deploy 실행
       - name: Deploy
         run: |
@@ -120,8 +78,4 @@ jobs:
           --deployment-group-name $CODE_DEPLOY_DEPLOYMENT_GROUP_NAME \
           --file-exists-behavior OVERWRITE \
           --s3-location bucket=$S3_BUCKET_NAME,bundleType=zip,key=$PROJECT_NAME/$GITHUB_SHA.zip \
-<<<<<<< HEAD
           --region $AWS_REGION \
-=======
-          --region $AWS_REGION \
->>>>>>> origin/main

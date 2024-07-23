@@ -20,10 +20,7 @@ public class User {
     private String name;
     private String pass;
     private String nick;
-<<<<<<< HEAD
     private String hp;
-=======
->>>>>>> origin/main
     private String role;
     private String gender;
     private String email;

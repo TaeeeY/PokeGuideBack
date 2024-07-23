@@ -1,9 +1,5 @@
 #!/bin/bash
-<<<<<<< HEAD
 PROJECT_NAME="pokeGuide"
-=======
-PROJECT_NAME="pokeguide"
->>>>>>> origin/main
 BUILD_JAR=$(ls /home/$PROJECT_NAME/build/libs/*.jar)
 JAR_NAME=$(basename $BUILD_JAR)
 echo "> build 파일명: $JAR_NAME" >> /home/$PROJECT_NAME/deploy.log
@@ -13,11 +9,7 @@ DEPLOY_PATH=/home/$PROJECT_NAME/
 cp $BUILD_JAR $DEPLOY_PATH
 
 echo "> 현재 실행중인 애플리케이션 pid 확인" >> /home/$PROJECT_NAME/deploy.log
-<<<<<<< HEAD
 CURRENT_PID=$(pgrep -f $JAR_NAME)
-=======
-CURRENT_PID=$(pgrep -f $PROJECT_NAME)
->>>>>>> origin/main
 
 if [ -z $CURRENT_PID ]
 then
