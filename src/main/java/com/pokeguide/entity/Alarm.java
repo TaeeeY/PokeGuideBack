@@ -1,8 +1,8 @@
 package com.pokeguide.entity;
 
+
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 
@@ -13,17 +13,16 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "chatFile")
-public class ChatFile {
+@Table(name = "alarm")
+public class Alarm {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
     private String uid;
-    private String filename;
-
-    @CreationTimestamp
-    private LocalDateTime cDate;
-
+    private String message;
+    private int chatNo;
+    private Boolean checked = false;
+    private LocalDateTime createdAt = LocalDateTime.now();
 
 }

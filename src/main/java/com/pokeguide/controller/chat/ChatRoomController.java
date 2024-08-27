@@ -6,8 +6,11 @@ import com.pokeguide.repository.ChatMessageRepository;
 import com.pokeguide.repository.ChatRoomRepository;
 import com.pokeguide.service.ChatRoomService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -18,8 +21,8 @@ public class ChatRoomController {
     private final ChatRoomService chatRoomService;
 
     @GetMapping("/chatrooms")
-    public List<ChatRoom> getChatRooms() {
-        return chatRoomRepository.findAll();
+    public List<ChatRoom> getChatRooms(@RequestParam String uid) {
+        return chatRoomService.findChatRoomsByUid(uid);
     }
 
     @PostMapping("/chatrooms")
@@ -28,9 +31,17 @@ public class ChatRoomController {
     }
 
     @GetMapping("/messages/chatroom/{chatNo}")
-    public List<ChatMessage> getMessagesByChatRoom(@PathVariable int chatNo) {
-        return chatMessageRepository.findByChatNo(chatNo);
+    public ResponseEntity<?> getMessagesByChatRoom(@PathVariable int chatNo, @RequestParam String uid) {
+        if (!chatRoomService.isUserAuthorized(chatNo, uid)) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Access denied");
+        }
+
+        List<ChatMessage> messages = chatMessageRepository.findByChatNo(chatNo);
+        return ResponseEntity.ok(messages);
     }
+
+
+
 
 
 }
