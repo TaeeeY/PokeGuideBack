@@ -1,3 +1,1 @@
 # pokeGuide
-
-얍얍
